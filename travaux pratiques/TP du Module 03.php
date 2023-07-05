@@ -140,5 +140,79 @@ $compareCitys -> compareSizeNameCity();
 
 
 
+/*
+Créer une classe abstraite représentant une personne. Elle déclare les propriétés
+nom et prenom et un constructeur.
+Créer une classe Client dérivée de la classe P ersonne en y ajoutant la propriété adresse , une
+méthode setcoord() et la méthode __ qui retourne les coordonnées complètes de la
+personne.
+Créer une classe Electeur dérivée de la même classe abstraite et y ajouter deux propriétés
+bureau_de_vote et vote ainsi qu une méthode avote() qui enregistre que la personne a voté dans
+la propriété vote.
+ */
 
+
+abstract class Personne{
+    protected $nom ='';
+    protected $prenom ='';
+
+    public function __construct($nom, $prenom)
+    {
+    $this ->nom = $nom;
+    $this->prenom = $prenom;
+    }
+}
+
+class Client extends Personne
+{
+    protected $adresse ='';
+
+    public function __construct($nom, $prenom, $adresse)
+    {
+        parent::__construct($nom, $prenom, );
+        $this -> adresse = $adresse;
+    }
+
+    public function setCoord($adresse){
+        $this -> adresse = $adresse;
+    }
+
+    public function __toString(){
+        return $this->nom . ' ' . $this->prenom . ' '. 'habite à l\'adresse ' . $this->adresse ;
+    }
+
+}
+
+$c = new Client('Dubois', 'Gregoire', 'rue de Siam');
+echo "\n";
+echo $c;
+
+
+
+
+class Electeur extends Personne{
+    protected $bureauDeVote = "";
+    protected $vote = 0;
+
+    public function __construct($nom, $prenom, $bureauDeVote, $vote)
+    {
+        parent::__construct($nom, $prenom);
+        $this -> bureauDeVote = $bureauDeVote;
+        $this -> vote = $vote;
+
+    }
+
+    public function vote($vote){
+        $this -> vote = $vote++;
+    }
+
+    public function __toString(){
+        return $this ->prenom . ' ' . $this ->prenom. ' vote au bureau de ' . $this-> bureauDeVote . ' et a voté ' . $this ->vote . ' fois';
+    }
+
+}
+
+$e = new Electeur('Dubois', 'Grégoire', 'Lyon', 1);
+echo "";
+echo $e;
 
