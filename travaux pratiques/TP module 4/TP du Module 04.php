@@ -13,11 +13,12 @@
 
 <form action="FormulairePhp.php" method="post">
     <fieldset>
-        <label for="nom">Nom :</label><input type="text" name="nom" id="nom"><br>
-        <label for="prenom">prénom :</label><input type="text" name="prenom" id="prenom"><br>
-        <label for="adresse">Adresse :</label><input type="text" name="adresse" id="adresse"><br>
-        <label for="cp">Code postal :</label><input type="text" name="cp" id="cp"><br>
-        <label for="ville">Ville :</label><input type="text" name="ville" id="ville"><br>
+        <label for="nom">Nom :</label><input type="text" name="nom" id="nom" required><br>
+        <label for="prenom">prénom :</label><input type="text" name="prenom" id="prenom" required><br>
+        <label for="adresse">Adresse :</label><input type="text" name="adresse" id="adresse" required><br>
+        <label for="cp">Code postal :</label><input type="text" name="cp" id="cp" required><br>
+        <label for="ville">Ville :</label><input type="text" name="ville" id="ville" required><br>
+        <label for="mail">Mail : </label><input type="email" name="email" id="email" required>
         <button class="btnValidate" type="submit" id="btnsubmit">Soumettre</button>
     </fieldset>
 </form>

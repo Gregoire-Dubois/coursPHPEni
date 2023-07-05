@@ -16,6 +16,7 @@
                 <label>adresse : <?php echo $_POST['adresse']; ?></label> <br>
                 <label>Code postal : <?php echo $_POST['cp'];?></label><br>
                 <label>ville : <?php echo $_POST['ville']; ?></label><br>
+                <label>Mail :<?php echo $_POST['email']; ?></label>
                 <label>navigateur : <?php echo getenv('HTTP_USER_AGENT'); ?></label>
             </fieldset>
         </form>
