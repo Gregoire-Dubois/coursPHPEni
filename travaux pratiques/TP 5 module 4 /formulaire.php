@@ -1,7 +1,8 @@
 <?php
 $choix = filter_input(INPUT_POST, 'choix');
+$secureChoice = htmlspecialchars($choix);
 
-if ($choix){
-    header('location: ' . $choix . '.php');
+if ($secureChoice){
+    header('location: ' . $secureChoice . '.php');
     exit();
 }
