@@ -1,45 +1,32 @@
 <?php
 
-
-$dsn = 'mysql:host=localhost:8888/phpMyAdmin/db_structure.php?db=tp;charset=utf8';
+$dsn = 'mysql:host=localhost:8889;dbname=tp;charset=utf8';
 $username = 'root';
-$password = 'GregD2021$';
+$password = 'root';
 
 try {
     $pdo = new PDO($dsn, $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion réussie à la base de données.";
 
-    $id = 1;
-    $query = 'SELECT * FROM cartesgrises';
-    $arr = $pdo -> query($query)->fetch();
-    var_dump($arr);
+    $options=[
+        PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES utf8',
+        PDO::ATTR_ERRMODE=> PDO::ERRMODE_EXCEPTION
+    ];
 
-    echo $arr;
+    echo 'test2';
 
-} catch (PDOException $e) {
-    echo "Erreur de connexion : " . $e->getMessage();
-}
+    $sqlQuery = 'SELECT * FROM voitures';
+    $recipesStatement  = $pdo->prepare($sqlQuery);
+    $recipesStatement ->execute();
+    $recipes = $recipesStatement->fetchAll();
 
-
-/*
- * try {
-    $pdo = new PDO($dsn, $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion réussie à la base de données.";
-    $query = "SELECT * FROM tp";
-
-    $stmt = $dpo -> query($query);
-    $arrAll = $stmt -> fetchAll();
-    var_dump($arrAll);
-
-    for ($i = 0; $i < count(); $i++){
-        echo '--> ' . $arrAll[$i];
-
+    foreach ($recipes as $recipe){
+        var_dump($recipe);
     }
 
+
 } catch (PDOException $e) {
-    echo "Erreur de connexion : " . $e->getMessage();
+    echo "";
+    echo "Erreur de connexion : " . $e->getMessage() . "\n";
+    die('erreur : ' .$e-> getMessage());
 }
- *
- */
