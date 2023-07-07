@@ -1,6 +1,6 @@
 <?php
 // récupération des données issues du formulaire
-$identifiant = $_POST['identifiant'];
+$identifiant =  $_POST['identifiant'];
 
 $marque = $_POST['marque'];
 
@@ -31,10 +31,10 @@ try {
                  VALUES(:identifiant, :marque, :modele, :energie);';
 
     $prep = $pdo->prepare($sqlQuery);
-    $prep-> bindValue(':identifiant', $identifiant);
-    $prep -> bindValue(':marque', $marque);
-    $prep -> bindValue(':modele', $modele);
-    $prep-> bindValue(':energie', $energie);
+    $prep-> bindValue(':identifiant', htmlspecialchars($identifiant));
+    $prep -> bindValue(':marque',htmlspecialchars($marque));
+    $prep -> bindValue(':modele', htmlspecialchars($modele));
+    $prep-> bindValue(':energie', htmlspecialchars($energie));
 
     $prep->execute();
     echo "fin de l'écriture en BDD";
