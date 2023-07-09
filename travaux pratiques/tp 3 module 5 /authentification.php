@@ -8,7 +8,7 @@ $sanitizeId = htmlspecialchars($numID);
 $sanitizeNom = htmlspecialchars(strtoupper($nomCient));
 
 // vérifier dans la base si l'ID et le nom correspondent (ou pas)
-    //connexion à la base de données
+//connexion à la base de données
 $dsn = 'mysql:host=localhost:8889;dbname=tp;charset=utf8';
 $user = 'root';
 $pass = 'root';
@@ -29,17 +29,15 @@ try {
     // var_dump($arr);
 
     if ($arr == true && strtoupper($arr['nom']) == strtoupper($sanitizeNom) && $arr['id_pers'] == $sanitizeId) {
-        echo 'Personne: ' . $arr['nom'] . ' ' . $arr['prenom'] . ' ' . $arr['id_pers'];
-    } else {
-        echo 'Erreur: Les informations fournies sont incorrectes.';
-    }
+        //echo 'Personne: ' . $arr['nom'] . ' ' . $arr['prenom'] . ' ' . $arr['id_pers'];
 
+        require_once ('modifInfoForm.php');
+
+    } else {
+       // echo 'Erreur: Les informations fournies sont incorrectes.';
+        require_once ('identificationProbleme.php');
+    }
 
 }catch (PDOException $exception){
     dir( $exception);
 }
-
-// si nom et ID correspondent
-
-
-    // afficher la page dédiée à la modif des données via formulaire HTML
