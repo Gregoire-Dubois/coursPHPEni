@@ -1,3 +1,4 @@
+global$sanitizeId;
 <html>
 <head>
     <meta charset="UTF-8">
@@ -12,6 +13,9 @@
     <form action="modificationBdd.php" method="post">
         <fieldset>
             <legend>Modification de vos données</legend>
+
+            <input type="hidden" id="refClient" name="refClient" value=<?= $sanitizeId;?>><br>
+
             <label>Nom de famille : </label><br>
             <input type="text" id="nom" name="nom"><br>
 

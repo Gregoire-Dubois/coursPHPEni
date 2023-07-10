@@ -1,7 +1,7 @@
 <?php
 
 // initialisation des variables pour récupérer les donées du formulaire
-
+$refpersonne = htmlspecialchars($_POST['refClient']);
 $sanitizeNom = htmlspecialchars($_POST['nom']);
 $sanitizePrenom = htmlspecialchars($_POST['prenom']);
 $sanitizeAdresse = htmlspecialchars($_POST['adresse']);
@@ -21,8 +21,8 @@ try {
     // préparation de la requête de modification dans la Bdd
 
     $sqlQuery = 'UPDATE proprietaires
-        SET adresse = :sanitizeAdresse, nom = :sanitizeNom, prenom = :sanitizePrenom, ville = :sanitizeVille, codepostal = :sanitizeCp
-        WHERE nom = :sanitizeNom';
+    SET adresse = :sanitizeAdresse, nom = :sanitizeNom, prenom = :sanitizePrenom, ville = :sanitizeVille, codepostal = :sanitizeCp
+    WHERE id_pers = :numID';
 
     $prep = $pdo->prepare($sqlQuery);
     $prep->bindValue(':sanitizeAdresse', $sanitizeAdresse);
@@ -30,6 +30,7 @@ try {
     $prep->bindValue(':sanitizePrenom', $sanitizePrenom);
     $prep->bindValue(':sanitizeVille', $sanitizeVille);
     $prep->bindValue(':sanitizeCp', $sanitizeCp);
+    $prep->bindValue(':numID', $refpersonne);
     $prep->execute();
 
     echo "Modification terminée";
@@ -37,3 +38,5 @@ try {
 }catch (PDOException $exception){
     dir($exception->getMessage());
 }
+
+// input hiden
